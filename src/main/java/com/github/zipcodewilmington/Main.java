@@ -13,9 +13,10 @@ public class Main {
         Wordguess.initialize_game_state(Wordguess.generateRandomWord());
 //      sets up char[] for secret word and guesses
 
-        Wordguess.getNextGuess();
+//      Wordguess.getNextGuess();
 //      get_next_guess() returns a char from player input
 
+//      Wordguess.is_word_guessed();
 //      is_word_guessed() returns boolean
 
 //      ask_to_play_again() returns boolean

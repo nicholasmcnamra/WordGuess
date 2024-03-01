@@ -13,49 +13,50 @@ import java.util.Scanner;
 // Nick McNamara
 public class Wordguess {
 
-    private int numberGuesses;
-    private String randomWord;
-    private String solution;
-    private String playerGuesses;
+//    private int numberGuesses;
+//    private String randomWord;
+//    private String solution;
+//    private String playerGuesses;
 
     public Wordguess() {
     }
 
-    public int getNumberGuesses() {
-        return numberGuesses;
-    }
-    public void setNumberGuesses(int numberGuesses) {
-        this.numberGuesses = numberGuesses;
-    }
 
-    public String getRandomWord() {
-        return randomWord;
-    }
-    public void setRandomWord(String randomWord) {
-        this.randomWord = randomWord;
-    }
-
-    public String getSolution() {
-        return solution;
-    }
-    public void setSolution(String solution) {
-        this.solution = solution;
-    }
-
-    public String getPlayerGuesses() {
-        return playerGuesses;
-    }
-    public void setPlayerGuesses(String playerGuesses) {
-        this.playerGuesses = playerGuesses;
-    }
+//    public int getNumberGuesses() {
+//        return numberGuesses;
+//    }
+//    public void setNumberGuesses(int numberGuesses) {
+//        this.numberGuesses = numberGuesses;
+//    }
+//
+//    public String getRandomWord() {
+//        return randomWord;
+//    }
+//    public void setRandomWord(String randomWord) {
+//        this.randomWord = randomWord;
+//    }
+//
+//    public String getSolution() {
+//        return solution;
+//    }
+//    public void setSolution(String solution) {
+//        this.solution = solution;
+//    }
+//
+//    public String getPlayerGuesses() {
+//        return playerGuesses;
+//    }
+//    public void setPlayerGuesses(String playerGuesses) {
+//        this.playerGuesses = playerGuesses;
+//    }
 
     //methods
 
     static String getNextGuess() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter a letter: ");
-
-        return String.valueOf(scan);
+        char guess = scan.nextLine().charAt(0);
+        return String.valueOf(guess);
     }
     // Get guess from user
 
@@ -66,7 +67,7 @@ public class Wordguess {
         };
         Random r = new Random();
         int randomNumber = r.nextInt(wordList.length);
-//        System.out.println(wordList[randomNumber]);
+        System.out.println(wordList[randomNumber]);
         String randomWord = wordList[randomNumber];
         return randomWord;
     }
@@ -74,12 +75,22 @@ public class Wordguess {
 
     static char[] initialize_game_state(String randomWord) {
         char[] ch = randomWord.toCharArray();
-        for (int i = 0; i < ch.length; i++)
+        for (int i = 0; i < ch.length; i++) {
             ch[i] = randomWord.charAt(i);
+        }
         return ch;
     }
-    static boolean is_word_guessed() {
-        for (int i = 0; i <)
+    static boolean is_word_guessed(char[] ch, char guess) {
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] == guess) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+        // check to see what's happening here
     }
-}
+    }
 
