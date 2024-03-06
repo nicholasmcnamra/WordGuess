@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington;
 
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,85 +13,36 @@ import java.util.Scanner;
 
 // Nick McNamara
 public class Wordguess {
-
-//    private int numberGuesses;
-//    private String randomWord;
-//    private String solution;
-//    private String playerGuesses;
-
-    public Wordguess() {
-    }
-
-
-//    public int getNumberGuesses() {
-//        return numberGuesses;
-//    }
-//    public void setNumberGuesses(int numberGuesses) {
-//        this.numberGuesses = numberGuesses;
-//    }
-//
-//    public String getRandomWord() {
-//        return randomWord;
-//    }
-//    public void setRandomWord(String randomWord) {
-//        this.randomWord = randomWord;
-//    }
-//
-//    public String getSolution() {
-//        return solution;
-//    }
-//    public void setSolution(String solution) {
-//        this.solution = solution;
-//    }
-//
-//    public String getPlayerGuesses() {
-//        return playerGuesses;
-//    }
-//    public void setPlayerGuesses(String playerGuesses) {
-//        this.playerGuesses = playerGuesses;
-//    }
-
     //methods
 
-    static String getNextGuess() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a letter: ");
-        char guess = scan.nextLine().charAt(0);
-        return String.valueOf(guess);
-    }
-    // Get guess from user
-
-    static String generateRandomWord() {
-        String[] wordList = new String[] {
+    // Generate random word
+    public static String generateRandomWord() {
+        String[] wordList = new String[]{
                 "apple", "banana", "dog", "airplane", "socks", "temptation",
                 "gold", "temporary", "mice", "three"
         };
         Random r = new Random();
+        String randomWord;
         int randomNumber = r.nextInt(wordList.length);
-        System.out.println(wordList[randomNumber]);
-        String randomWord = wordList[randomNumber];
+        randomWord = wordList[randomNumber];
         return randomWord;
     }
-    // Generate random word
 
-    static char[] initialize_game_state(String randomWord) {
-        char[] ch = randomWord.toCharArray();
-        for (int i = 0; i < ch.length; i++) {
-            ch[i] = randomWord.charAt(i);
-        }
-        return ch;
+    public static StringBuilder generateUserWord(String randomWord) {
+        StringBuilder userWord = new StringBuilder();
+        userWord.append("_".repeat(randomWord.length()));
+        return userWord;
     }
-    static boolean is_word_guessed(char[] ch, char guess) {
-        for (int i = 0; i < ch.length; i++) {
-            if (ch[i] == guess) {
-                return true;
-            }
-            else {
-                return false;
+
+    public static String checkUserGuess(char userGuess, String randomWord, StringBuilder userWord) {
+        char[] randomWordArr = randomWord.toCharArray();
+        for (int i = 0; i < randomWord.length(); i++) {
+            if (userGuess == randomWordArr[i]) {
+                userWord.replace(i, i, String.valueOf(userGuess));
             }
         }
-        return false;
-        // check to see what's happening here
+        return userWord.toString();
     }
-    }
+}
+
 
