@@ -16,9 +16,6 @@ public class Main {
         boolean restart = true;
 
 
-
-
-
         while (restart) {
             numberGuesses = randomWord.length() + 1;
             userWord = Wordguess.generateUserWord(randomWord);
@@ -38,23 +35,22 @@ public class Main {
                     } else {
                         break;
                     }
-                }
-                else if (numberGuesses == 0){
-                    System.out.println("You lose.\nWould you like to play again? [Y/N]");
-                    if (playAgain == 'N') {
-                        restart = false;
-                        break;
-                    } else {
-                        break;
-                    }
-                }
-
-                else {
+                } else {
                     System.out.println(userWord);
                     numberGuesses--;
+                    if (numberGuesses == 0) {
+                        System.out.println("You lose.\nWould you like to play again? [Y/N]");
+                        playAgain = scanner.nextLine().charAt(0);
+                        if (playAgain == 'N') {
+                            restart = false;
+                            break;
+                        } else {
+                            break;
+                        }
+                        }
                     System.out.println("You have " + numberGuesses + " guesses left.");
-                }
                 }
             }
         }
+    }
     }
