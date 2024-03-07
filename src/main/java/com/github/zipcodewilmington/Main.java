@@ -9,22 +9,52 @@ public class Main {
         String randomWord = Wordguess.generateRandomWord();
         StringBuilder userWord = new StringBuilder();
         char userGuess;
-        int numberGuesses = randomWord.length() - 1;
+        int numberGuesses;
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("");
+        char playAgain = 0;
+        boolean restart = true;
 
-        System.out.println("Lets play WordGuess!\nYou have " + numberGuesses + " guesses.");
 
 
-        userWord = Wordguess.generateUserWord(randomWord);
-        System.out.println(userWord);
 
-        while (numberGuesses > 0 ) {
 
-            userGuess = scanner.nextLine().charAt(0);
-            userWord = new StringBuilder(Wordguess.checkUserGuess(userGuess, randomWord, userWord));
+        while (restart) {
+            numberGuesses = randomWord.length() + 1;
+            userWord = Wordguess.generateUserWord(randomWord);
+            System.out.println("Lets play WordGuess!\nYou have " + numberGuesses + " guesses.\nEnter a single character:\n");
             System.out.println(userWord);
-            numberGuesses --;
+
+            while (numberGuesses > 0 || userWord.toString().equals(randomWord)) {
+
+                userGuess = scanner.nextLine().charAt(0);
+                userWord = new StringBuilder(Wordguess.checkUserGuess(userGuess, randomWord, userWord));
+                if (userWord.toString().equals(randomWord)) {
+                    System.out.println("Congratulations, you won!\nWould you like to play again? [Y/N]");
+                    playAgain = scanner.nextLine().charAt(0);
+                    if (playAgain == 'N') {
+                        restart = false;
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+                else if (numberGuesses == 0){
+                    System.out.println("You lose.\nWould you like to play again? [Y/N]");
+                    if (playAgain == 'N') {
+                        restart = false;
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+
+                else {
+                    System.out.println(userWord);
+                    numberGuesses--;
+                    System.out.println("You have " + numberGuesses + " guesses left.");
+                }
+                }
+            }
         }
     }
-}

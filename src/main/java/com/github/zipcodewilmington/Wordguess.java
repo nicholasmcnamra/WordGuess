@@ -38,7 +38,7 @@ public class Wordguess {
         char[] randomWordArr = randomWord.toCharArray();
         for (int i = 0; i < randomWord.length(); i++) {
             if (userGuess == randomWordArr[i]) {
-                userWord.replace(i, i, String.valueOf(userGuess));
+                userWord.replace(i, i+1, String.valueOf(userGuess));
             }
         }
         return userWord.toString();
